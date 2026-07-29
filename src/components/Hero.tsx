@@ -4,15 +4,12 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { heroSlides, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { ArrowUpRight } from "lucide-react";
-
-const HOLD = 4; // seconds each slide stays fully visible
-const FADE = 1.2;
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,9 +20,7 @@ export default function Hero() {
     ).matches;
 
     const ctx = gsap.context(() => {
-      const layers = gsap.utils.toArray<HTMLElement>("[data-hero-layer]");
-
-      // Opening copy reveal — clearProps ensures elements remain 100% visible without CSS collision.
+      // Opening copy reveal animation
       gsap.from("[data-hero-copy] > *", {
         y: 30,
         opacity: 0,
@@ -38,26 +33,9 @@ export default function Hero() {
 
       if (prefersReducedMotion) return;
 
-      // Crossfade slideshow with a slow push-in on the incoming frame.
-      gsap.set(layers, { opacity: 0 });
-      gsap.set(layers[0], { opacity: 1 });
-
-      const tl = gsap.timeline({ repeat: -1 });
-      layers.forEach((layer, i) => {
-        const next = layers[(i + 1) % layers.length];
-        tl.to(layer, { opacity: 0, duration: FADE, ease: "power2.inOut" }, `+=${HOLD}`)
-          .to(next, { opacity: 1, duration: FADE, ease: "power2.inOut" }, "<")
-          .fromTo(
-            next,
-            { scale: 1.1 },
-            { scale: 1, duration: HOLD + FADE * 2, ease: "none" },
-            "<",
-          );
-      });
-
-      // Background drifts slower than the page for depth.
-      gsap.to(stackRef.current, {
-        yPercent: 14,
+      // Parallax scroll effect for the video background
+      gsap.to(videoContainerRef.current, {
+        yPercent: 12,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -77,29 +55,39 @@ export default function Hero() {
       id="top"
       className="relative w-full min-h-[480px] h-[80vh] sm:h-[560px] lg:h-[85vh] lg:min-h-[640px] lg:max-h-[850px] overflow-hidden"
     >
-      {/* Background Image Slideshow - Edge to Edge, No Rounded Corners */}
+      {/* Background Video Layer */}
       <div className="absolute inset-0">
-        <div ref={stackRef} className="absolute inset-0 scale-105">
-          {heroSlides.map((src, i) => (
-            <div key={src} data-hero-layer className="absolute inset-0">
-              <Image
-                src={src}
-                alt="BelleVue Architectural & Interior Design"
-                fill
-                preload={i === 0}
-                sizes="100vw"
-                className="object-cover object-center"
-              />
-            </div>
-          ))}
+        <div ref={videoContainerRef} className="absolute inset-0 scale-105">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/1.jpg"
+            className="h-full w-full object-cover object-center"
+          >
+            {/* Main Video File (Place your video at public/videos/hero.mp4) */}
+            <source src="/videos/hero.mp4" type="video/mp4" />
+            {/* Optional WebM fallback for optimized browsers */}
+            <source src="/videos/hero.webm" type="video/webm" />
+            {/* Fallback Image if video is unsupported */}
+            <Image
+              src="/images/1.jpg"
+              alt="BelleVue Architectural & Interior Design"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </video>
         </div>
       </div>
 
-      {/* Legibility overlays */}
-      <div className="absolute inset-0 bg-black/35" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+      {/* Legibility Overlays for Dark Contrast */}
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-      {/* Hero Content Container - Aligned to standard page shell measure & padding */}
+      {/* Hero Content Container */}
       <div
         ref={copyRef}
         className="shell relative flex h-full flex-col justify-end text-cream pb-6 sm:pb-10 lg:pb-14 gap-4 sm:gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
