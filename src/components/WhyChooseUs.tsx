@@ -11,31 +11,31 @@ import {
 
 /** Shared glassmorphic styling base for Bento Grid tiles */
 const CARD_BASE =
-  "group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/50 bg-white/40 backdrop-blur-md p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:border-brand-light/60 hover:bg-white/70 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)]";
+  "group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/50 bg-white/40 backdrop-blur-md p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-2 hover:border-brand-light/60 hover:bg-white/75 hover:shadow-[0_30px_60px_-15px_rgba(62,45,32,0.12)] shadow-[0_16px_45px_rgba(0,0,0,0.05)]";
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="relative overflow-hidden bg-transparent py-12 sm:py-16 lg:py-24">
+    <section id="why-choose-us" className="relative overflow-hidden bg-transparent py-20 sm:py-28 lg:py-32">
       {/* Subtle ambient lighting accents for depth on transparent bg */}
       <div className="pointer-events-none absolute -left-20 top-1/2 -z-10 h-72 w-72 -translate-y-1/2 rounded-full bg-brand-light/10 blur-[100px] sm:h-96 sm:w-96 sm:blur-[120px]" />
       <div className="pointer-events-none absolute -right-20 top-1/3 -z-10 h-64 w-64 rounded-full bg-sand-deep/20 blur-[80px] sm:h-80 sm:w-80 sm:blur-[100px]" />
 
       <div className="shell">
-        <div className="mb-8 text-center sm:mb-12 lg:mb-14" data-reveal="up">
-          <span className="mb-2.5 inline-flex items-center gap-2 rounded-full bg-brand/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-dark sm:px-4 sm:py-1.5">
+        <div className="mb-10 text-center sm:mb-14 lg:mb-16" data-reveal="up">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-dark">
             <Sparkles className="h-3.5 w-3.5 text-brand" />
             The BelleVue Advantage
           </span>
-          <h2 className="text-2.5xl font-light text-ink sm:text-4xl lg:text-[3.2rem] lg:leading-tight">
+          <h2 className="text-3xl font-light text-ink sm:text-4xl lg:text-[3.2rem] lg:leading-tight">
             Why <span className="font-normal text-brand-light">Choose</span> BelleVue
           </h2>
-          <p className="mx-auto mt-2.5 max-w-xl text-xs leading-relaxed text-ink-soft sm:mt-3 sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-xs leading-relaxed text-ink-soft sm:text-base font-light">
             Delivering architectural excellence through seamless execution, uncompromised quality, and total creative freedom.
           </p>
         </div>
 
         {/* Asymmetrical 3-Column Desktop Bento Grid Layout */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[35fr_35fr_30fr] lg:grid-rows-[minmax(250px,auto)_minmax(280px,auto)] lg:gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[35fr_35fr_30fr] lg:grid-rows-[minmax(250px,auto)_minmax(280px,auto)] lg:gap-6">
           {chooseCards.map((card, i) => {
             const reveal = {
               "data-reveal": "up",
@@ -48,7 +48,7 @@ export default function WhyChooseUs() {
                 <div
                   key={card.title}
                   {...reveal}
-                  className={`group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/40 p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-2xl ${
+                  className={`group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/40 p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-2 hover:shadow-[0_35px_70px_rgba(0,0,0,0.3)] shadow-[0_20px_50px_rgba(0,0,0,0.15)] ${
                     card.span ?? "sm:col-span-2 lg:col-start-1 lg:col-span-2 lg:row-start-2"
                   } lg:min-h-[280px]`}
                 >
@@ -57,14 +57,14 @@ export default function WhyChooseUs() {
                     alt={card.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 900px"
-                    className="object-cover object-[50%_60%] transition-transform duration-[900ms] ease-[var(--ease-out-expo)] group-hover:scale-105"
+                    className="object-cover object-[50%_60%] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/15" />
 
                   {/* Floating Badge */}
                   <div className="relative self-start">
-                    <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md sm:gap-2 sm:px-3.5 sm:py-1.5 sm:text-xs">
-                      <Award className="h-3.5 w-3.5 text-brand-light sm:h-4 sm:w-4" />
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/20 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+                      <Award className="h-4 w-4 text-brand-light" />
                       <span>Uncompromised Standard</span>
                     </div>
                   </div>
@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
                     <h3 className="mb-2 text-xl font-medium sm:mb-2.5 sm:text-2xl lg:text-[1.75rem]">
                       {card.title}
                     </h3>
-                    <p className="max-w-[540px] text-xs leading-relaxed text-white/90 sm:text-sm">
+                    <p className="max-w-[540px] text-xs leading-relaxed text-white/90 sm:text-sm font-light">
                       {card.body}
                     </p>
                   </div>
@@ -87,25 +87,25 @@ export default function WhyChooseUs() {
                 <div
                   key={card.title}
                   {...reveal}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br from-espresso via-brand-dark to-brand-deeper p-6 sm:p-8 text-white shadow-xl transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-12px_rgba(62,45,32,0.4)] ${
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br from-espresso via-brand-dark to-brand-deeper p-6 sm:p-8 text-white shadow-[0_25px_60px_rgba(62,45,32,0.35)] transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-2 hover:shadow-[0_35px_75px_rgba(62,45,32,0.45)] ${
                     card.span ?? "sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:row-span-2"
                   } min-h-[320px] lg:pb-9 lg:pt-9`}
                 >
                   {/* Decorative background glow */}
-                  <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-light/20 blur-2xl transition-all duration-500 group-hover:bg-brand-light/30" />
+                  <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-light/20 blur-2xl transition-all duration-500 group-hover:bg-brand-light/35" />
 
                   <div>
                     <div className="mb-5 flex items-center justify-between sm:mb-6">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white backdrop-blur-md sm:h-11 sm:w-11 sm:rounded-2xl">
-                        <Compass className="h-5 w-5" />
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white backdrop-blur-md">
+                        <Compass className="h-5.5 w-5.5" />
                       </div>
-                      <span className="rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-medium tracking-wide uppercase text-white/80 backdrop-blur-md sm:px-3 sm:text-[11px]">
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium tracking-wide uppercase text-white/80 backdrop-blur-md">
                         Vendor Agnostic
                       </span>
                     </div>
 
                     <h3 className="mb-2 text-xl font-medium sm:mb-3 sm:text-2xl">{card.title}</h3>
-                    <p className="text-xs leading-relaxed text-white/85 sm:text-sm">
+                    <p className="text-xs leading-relaxed text-white/85 sm:text-sm font-light">
                       {card.body}
                     </p>
                   </div>
@@ -115,7 +115,7 @@ export default function WhyChooseUs() {
                       <h4 className="mb-1.5 text-base font-medium text-white sm:mb-2 sm:text-lg">
                         {card.secondary.title}
                       </h4>
-                      <p className="text-xs leading-relaxed text-white/80 sm:text-sm">
+                      <p className="text-xs leading-relaxed text-white/80 sm:text-sm font-light">
                         {card.secondary.body}
                       </p>
 
@@ -146,15 +146,15 @@ export default function WhyChooseUs() {
               >
                 <div>
                   <div className="mb-4 flex items-center justify-between sm:mb-5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand-dark transition-colors duration-300 group-hover:bg-brand group-hover:text-white sm:h-11 sm:w-11 sm:rounded-2xl">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand/10 text-brand-dark transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
                       {isAfterSales ? (
-                        <ShieldCheck className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                        <ShieldCheck className="h-5.5 w-5.5" />
                       ) : (
-                        <Layers className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                        <Layers className="h-5.5 w-5.5" />
                       )}
                     </div>
 
-                    <span className="rounded-full bg-sand-deep/40 px-2.5 py-1 text-[10px] font-medium tracking-wide uppercase text-ink-soft sm:px-3 sm:text-[11px]">
+                    <span className="rounded-full bg-sand-deep/40 px-3 py-1 text-[11px] font-medium tracking-wide uppercase text-ink-soft">
                       {isAfterSales ? "Warranty & Care" : "Full-Cycle"}
                     </span>
                   </div>
@@ -162,7 +162,7 @@ export default function WhyChooseUs() {
                   <h3 className="mb-2 text-xl font-medium text-ink sm:mb-2.5 sm:text-2xl">
                     {card.title}
                   </h3>
-                  <p className="text-xs leading-relaxed text-ink-soft sm:text-sm">
+                  <p className="text-xs leading-relaxed text-ink-soft sm:text-sm font-light">
                     {card.body}
                   </p>
                 </div>

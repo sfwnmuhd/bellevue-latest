@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { heroSlides, site } from "@/lib/site";
+import { ArrowUpRight } from "lucide-react";
 
 const HOLD = 4; // seconds each slide stays fully visible
 const FADE = 1.2;
@@ -74,7 +75,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative w-full min-h-[460px] h-[75vh] sm:h-[520px] lg:h-[85vh] lg:min-h-[620px] lg:max-h-[850px] overflow-hidden"
+      className="relative w-full min-h-[480px] h-[80vh] sm:h-[560px] lg:h-[85vh] lg:min-h-[640px] lg:max-h-[850px] overflow-hidden"
     >
       {/* Background Image Slideshow - Edge to Edge, No Rounded Corners */}
       <div className="absolute inset-0">
@@ -95,17 +96,17 @@ export default function Hero() {
       </div>
 
       {/* Legibility overlays */}
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
       {/* Hero Content Container - Aligned to standard page shell measure & padding */}
       <div
         ref={copyRef}
-        className="shell relative flex h-full flex-col justify-end text-cream pb-4 sm:pb-8 lg:pb-10 gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
+        className="shell relative flex h-full flex-col justify-end text-cream pb-6 sm:pb-10 lg:pb-14 gap-4 sm:gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
       >
         {/* Left Column: Heading */}
-        <div data-hero-copy className="lg:max-w-[55%]">
-          <h1 className="text-[1.35rem] font-bold leading-[1.18] text-white sm:text-3xl lg:text-[3rem] xl:text-[3.5rem]">
+        <div data-hero-copy className="lg:max-w-[58%]">
+          <h1 className="text-2xl font-bold leading-[1.16] text-white min-[480px]:text-3xl sm:text-4xl lg:text-[3.2rem] xl:text-[3.6rem]">
             Bringing <span className="text-[#e4c8aa]">Luxury Aesthetics</span>
             <br className="hidden sm:block" /> in Architectural and Interior Designs
           </h1>
@@ -114,18 +115,19 @@ export default function Hero() {
         {/* Right Column: Subheading and CTA Button */}
         <div
           data-hero-copy
-          className="flex flex-col items-start gap-2 sm:gap-3.5 lg:max-w-[380px] shrink-0"
+          className="flex flex-col items-start gap-3 sm:gap-4 lg:max-w-[380px] shrink-0"
         >
-          <p className="text-[13px] sm:text-sm lg:text-base leading-snug sm:leading-relaxed text-cream/90">
+          <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-cream/90 font-light">
             Bellevue simplifies the construction and completion of luxurious residential and commercial projects in India.
           </p>
           <a
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2 sm:px-6 sm:py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-lg transition-[background-color,transform,box-shadow] duration-300 hover:bg-brand-dark hover:scale-[1.02] shrink-0"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-xl transition-all duration-300 hover:bg-brand-dark hover:-translate-y-1 hover:shadow-[0_15px_30px_-5px_rgba(166,115,76,0.5)] shrink-0"
           >
-            Start Your Journey
+            <span>Start Your Journey</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
       </div>
