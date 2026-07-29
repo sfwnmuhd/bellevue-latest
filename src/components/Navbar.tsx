@@ -39,7 +39,7 @@ export default function Navbar() {
         }`}
       >
         <div className={`flex items-center justify-between transition-all duration-500 ${
-          scrolled ? "px-4 py-2 sm:px-7 sm:py-2.5" : "px-6 py-3 sm:px-10 sm:py-3.5"
+          scrolled ? "px-3.5 py-2 sm:px-7 sm:py-2.5" : "px-4 py-2.5 sm:px-10 sm:py-3.5"
         }`}>
           {/* Left: Company Logo */}
           <SiteLink

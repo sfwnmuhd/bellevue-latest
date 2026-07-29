@@ -29,7 +29,7 @@ export default function ValuesCarousel({ items }: ValuesCarouselProps) {
         {items.map((item, index) => (
           <div
             key={item.title || index}
-            className="w-[280px] shrink-0 rounded-2xl bg-[#f4f0e8] p-6 transition-transform hover:-translate-y-1 sm:w-[340px] sm:p-8"
+            className="w-[85vw] max-w-[280px] shrink-0 rounded-2xl bg-[#f4f0e8] p-6 transition-transform hover:-translate-y-1 sm:w-[340px] sm:max-w-none sm:p-8"
           >
             <h3 className="mb-3 text-lg font-semibold text-[#2b231d] sm:text-xl">
               {item.title}

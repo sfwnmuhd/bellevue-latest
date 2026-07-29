@@ -66,7 +66,7 @@ export default function OurProjectsPage() {
               </div>
 
               {/* Card Footer Content */}
-              <div className="mt-5 flex items-end justify-between gap-4 px-2 pb-1">
+              <div className="mt-5 flex flex-wrap items-end justify-between gap-3 px-2 pb-1 sm:flex-nowrap sm:gap-4">
                 <div className="flex-1">
                   <h2 className="mb-3 text-xl font-semibold text-[#222222] sm:text-2xl">
                     {project.title}

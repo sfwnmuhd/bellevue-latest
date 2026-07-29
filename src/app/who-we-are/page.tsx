@@ -88,7 +88,7 @@ export default function WhoWeArePage() {
                 </blockquote>
 
                 {/* Author Pill */}
-                <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#f4ece1] px-4 py-2 text-xs font-medium text-[#4a3a2c]">
+                <div className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-2xl bg-[#f4ece1] px-4 py-2 text-xs font-medium text-[#4a3a2c] sm:rounded-full">
                   <span className="h-2 w-2 rounded-full bg-[#a6734c]" />
                   <span>Ajaaz C A</span>
                   <span className="opacity-40">•</span>
@@ -163,7 +163,7 @@ export default function WhoWeArePage() {
         </div>
 
         {/* 2x2 Grid of Cards */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
+        <div className="grid gap-4 min-[480px]:grid-cols-2 sm:gap-5 lg:gap-6">
           {differences.map((item) => (
             <div
               key={item.title}

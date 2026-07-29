@@ -74,7 +74,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative w-full h-[420px] sm:h-[520px] lg:h-[85vh] lg:min-h-[620px] lg:max-h-[850px] overflow-hidden"
+      className="relative w-full min-h-[460px] h-[75vh] sm:h-[520px] lg:h-[85vh] lg:min-h-[620px] lg:max-h-[850px] overflow-hidden"
     >
       {/* Background Image Slideshow - Edge to Edge, No Rounded Corners */}
       <div className="absolute inset-0">

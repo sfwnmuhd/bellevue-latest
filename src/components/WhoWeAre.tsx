@@ -49,7 +49,7 @@ export default function WhoWeAre() {
             </div>
 
             {/* Key feature pills */}
-            <div className="relative z-10 grid grid-cols-2 gap-3 pt-8 mt-6 border-t border-white/10 text-xs font-medium text-cream/90">
+            <div className="relative z-10 flex flex-wrap gap-x-5 gap-y-2.5 pt-6 mt-6 border-t border-white/10 text-xs font-medium text-cream/90">
               <div className="flex items-center gap-2">
                 <span className="text-brand">✦</span> Turnkey Execution
               </div>
@@ -89,7 +89,7 @@ export default function WhoWeAre() {
           <div
             data-reveal="right"
             data-reveal-delay="0.2"
-            className="lg:col-span-3 flex flex-col gap-5 justify-between"
+            className="lg:col-span-3 flex flex-col min-[480px]:flex-row lg:flex-col gap-4 sm:gap-5 justify-between"
           >
             {/* Stat Box 1 */}
             <div className="flex-1 flex flex-col justify-between rounded-[28px] bg-sand border border-brand/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-shadow">

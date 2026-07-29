@@ -1,50 +1,79 @@
 import Image from "next/image";
 import { chooseCards } from "@/lib/site";
+import {
+  Layers,
+  ShieldCheck,
+  Award,
+  Sparkles,
+  CheckCircle2,
+  Compass,
+} from "lucide-react";
 
-/** Shared by every tile so the bento keeps one corner radius and lift. */
+/** Shared glassmorphic styling base for Bento Grid tiles */
 const CARD_BASE =
-  "group relative flex flex-col overflow-hidden rounded-card transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1";
+  "group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/50 bg-white/40 backdrop-blur-md p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:border-brand-light/60 hover:bg-white/70 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)]";
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="bg-cream-soft py-14 lg:py-[60px]">
-      <div className="shell">
-        <h2
-          data-reveal="up"
-          className="mb-8 text-2xl text-ink sm:text-[2.2rem] lg:mb-12 lg:text-[3rem]"
-        >
-          Why <span className="text-brand-light">Choose</span> BelleVue
-        </h2>
+    <section id="why-choose-us" className="relative overflow-hidden bg-transparent py-12 sm:py-16 lg:py-24">
+      {/* Subtle ambient lighting accents for depth on transparent bg */}
+      <div className="pointer-events-none absolute -left-20 top-1/2 -z-10 h-72 w-72 -translate-y-1/2 rounded-full bg-brand-light/10 blur-[100px] sm:h-96 sm:w-96 sm:blur-[120px]" />
+      <div className="pointer-events-none absolute -right-20 top-1/3 -z-10 h-64 w-64 rounded-full bg-sand-deep/20 blur-[80px] sm:h-80 sm:w-80 sm:blur-[100px]" />
 
-        {/* Columns run ~35/35/30 and both rows are pinned, so the two light
-            tiles, the image tile and the full-height column all line up. */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[35fr_35fr_30fr] lg:grid-rows-[minmax(256px,auto)_minmax(284px,auto)] lg:gap-[18px]">
+      <div className="shell">
+        <div className="mb-8 text-center sm:mb-12 lg:mb-14" data-reveal="up">
+          <span className="mb-2.5 inline-flex items-center gap-2 rounded-full bg-brand/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-dark sm:px-4 sm:py-1.5">
+            <Sparkles className="h-3.5 w-3.5 text-brand" />
+            The BelleVue Advantage
+          </span>
+          <h2 className="text-2.5xl font-light text-ink sm:text-4xl lg:text-[3.2rem] lg:leading-tight">
+            Why <span className="font-normal text-brand-light">Choose</span> BelleVue
+          </h2>
+          <p className="mx-auto mt-2.5 max-w-xl text-xs leading-relaxed text-ink-soft sm:mt-3 sm:text-base">
+            Delivering architectural excellence through seamless execution, uncompromised quality, and total creative freedom.
+          </p>
+        </div>
+
+        {/* Asymmetrical 3-Column Desktop Bento Grid Layout */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[35fr_35fr_30fr] lg:grid-rows-[minmax(250px,auto)_minmax(280px,auto)] lg:gap-6">
           {chooseCards.map((card, i) => {
             const reveal = {
               "data-reveal": "up",
               "data-reveal-delay": `${i * 0.08}`,
             } as const;
 
+            // Tile 3: Superior Quality (Wide Image Card - Row 2, Col 1-2)
             if (card.variant === "image") {
               return (
                 <div
                   key={card.title}
                   {...reveal}
-                  className={`${CARD_BASE} ${card.span ?? ""} min-h-[240px] justify-end`}
+                  className={`group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[24px] border border-stone-300/40 p-6 sm:p-8 transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-2xl ${
+                    card.span ?? "sm:col-span-2 lg:col-start-1 lg:col-span-2 lg:row-start-2"
+                  } lg:min-h-[280px]`}
                 >
                   <Image
                     src={card.image!}
-                    alt=""
+                    alt={card.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 1000px"
+                    sizes="(max-width: 1024px) 100vw, 900px"
                     className="object-cover object-[50%_60%] transition-transform duration-[900ms] ease-[var(--ease-out-expo)] group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/25" />
-                  <div className="relative px-6 pb-8 text-center text-white sm:px-10 sm:pb-10">
-                    <h3 className="mb-2.5 text-xl sm:text-2xl lg:text-[1.75rem]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/15" />
+
+                  {/* Floating Badge */}
+                  <div className="relative self-start">
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md sm:gap-2 sm:px-3.5 sm:py-1.5 sm:text-xs">
+                      <Award className="h-3.5 w-3.5 text-brand-light sm:h-4 sm:w-4" />
+                      <span>Uncompromised Standard</span>
+                    </div>
+                  </div>
+
+                  <div className="relative mt-8 text-white sm:mt-0">
+                    <h3 className="mb-2 text-xl font-medium sm:mb-2.5 sm:text-2xl lg:text-[1.75rem]">
                       {card.title}
                     </h3>
-                    <p className="mx-auto max-w-[560px] text-[13px] leading-relaxed sm:text-[15px]">
+                    <p className="max-w-[540px] text-xs leading-relaxed text-white/90 sm:text-sm">
                       {card.body}
                     </p>
                   </div>
@@ -52,70 +81,116 @@ export default function WhyChooseUs() {
               );
             }
 
+            // Tile 4: Dark Luxury Bento Card (Tall Column 3 - Spans Rows 1 & 2)
             if (card.variant === "dark") {
               return (
                 <div
                   key={card.title}
                   {...reveal}
-                  className={`${CARD_BASE} ${card.span ?? ""} min-h-[320px] justify-between bg-[radial-gradient(circle_at_top,var(--color-brand-dark),var(--color-brand-deeper)_70%)] p-6 text-white sm:p-8 lg:pb-10 lg:pt-14`}
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br from-espresso via-brand-dark to-brand-deeper p-6 sm:p-8 text-white shadow-xl transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-12px_rgba(62,45,32,0.4)] ${
+                    card.span ?? "sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:row-span-2"
+                  } min-h-[320px] lg:pb-9 lg:pt-9`}
                 >
-                  <div className="text-center">
-                    <h3 className="mb-3 text-xl sm:text-2xl">{card.title}</h3>
-                    <p className="text-[13px] leading-relaxed text-white/85 sm:text-[15px]">
+                  {/* Decorative background glow */}
+                  <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-light/20 blur-2xl transition-all duration-500 group-hover:bg-brand-light/30" />
+
+                  <div>
+                    <div className="mb-5 flex items-center justify-between sm:mb-6">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white backdrop-blur-md sm:h-11 sm:w-11 sm:rounded-2xl">
+                        <Compass className="h-5 w-5" />
+                      </div>
+                      <span className="rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-medium tracking-wide uppercase text-white/80 backdrop-blur-md sm:px-3 sm:text-[11px]">
+                        Vendor Agnostic
+                      </span>
+                    </div>
+
+                    <h3 className="mb-2 text-xl font-medium sm:mb-3 sm:text-2xl">{card.title}</h3>
+                    <p className="text-xs leading-relaxed text-white/85 sm:text-sm">
                       {card.body}
                     </p>
                   </div>
 
                   {card.secondary && (
-                    <div className="mt-10 text-left">
-                      <h3 className="mb-2.5 text-lg sm:text-xl">
+                    <div className="relative mt-6 border-t border-white/15 pt-5 sm:mt-8 sm:pt-6">
+                      <h4 className="mb-1.5 text-base font-medium text-white sm:mb-2 sm:text-lg">
                         {card.secondary.title}
-                      </h3>
-                      <p className="text-[13px] leading-relaxed text-white/85 sm:text-[15px]">
+                      </h4>
+                      <p className="text-xs leading-relaxed text-white/80 sm:text-sm">
                         {card.secondary.body}
                       </p>
+
+                      <div className="mt-3.5 flex flex-wrap gap-2 sm:mt-4">
+                        <span className="inline-flex items-center gap-1.5 text-[11px] bg-white/10 px-2.5 py-1 rounded-md text-white/90">
+                          <CheckCircle2 className="h-3 w-3 text-brand-light" />
+                          Custom Joinery
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 text-[11px] bg-white/10 px-2.5 py-1 rounded-md text-white/90">
+                          <CheckCircle2 className="h-3 w-3 text-brand-light" />
+                          Global Sourcing
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
               );
             }
 
-            // Light tiles: one leads with copy over a clipped brand mark, the
-            // other sits beneath a soft orb.
-            const leadsWithMotif = card.motif === "orb";
+            // Light Bento Tiles (Tile 1: End-to-End Solutions, Tile 2: After-Sales Support)
+            const isAfterSales = card.title.toLowerCase().includes("after-sales");
 
             return (
               <div
                 key={card.title}
                 {...reveal}
-                className={`${CARD_BASE} ${card.span ?? ""} min-h-[220px] bg-sand p-6 text-center sm:p-8 ${leadsWithMotif ? "justify-end" : "justify-start"
-                  }`}
+                className={`${CARD_BASE} ${card.span ?? ""} min-h-[220px] sm:min-h-[240px]`}
               >
-                {card.motif === "orb" && (
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -top-14 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--color-espresso),transparent_65%)] opacity-45 blur-2xl"
-                  />
-                )}
+                <div>
+                  <div className="mb-4 flex items-center justify-between sm:mb-5">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand-dark transition-colors duration-300 group-hover:bg-brand group-hover:text-white sm:h-11 sm:w-11 sm:rounded-2xl">
+                      {isAfterSales ? (
+                        <ShieldCheck className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                      ) : (
+                        <Layers className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                      )}
+                    </div>
 
-                <div className="relative">
-                  <h3 className="mb-2.5 text-lg text-ink sm:text-xl">
+                    <span className="rounded-full bg-sand-deep/40 px-2.5 py-1 text-[10px] font-medium tracking-wide uppercase text-ink-soft sm:px-3 sm:text-[11px]">
+                      {isAfterSales ? "Warranty & Care" : "Full-Cycle"}
+                    </span>
+                  </div>
+
+                  <h3 className="mb-2 text-xl font-medium text-ink sm:mb-2.5 sm:text-2xl">
                     {card.title}
                   </h3>
-                  <p className="mx-auto max-w-[380px] text-[13px] leading-relaxed text-ink-soft sm:text-[15px]">
+                  <p className="text-xs leading-relaxed text-ink-soft sm:text-sm">
                     {card.body}
                   </p>
                 </div>
 
-                {card.motif === "mark" && (
-                  <Image
-                    src="/images/000.png"
-                    alt=""
-                    aria-hidden
-                    width={160}
-                    height={160}
-                    className="pointer-events-none absolute -bottom-10 left-1/2 h-36 w-36 -translate-x-1/2 object-contain opacity-90"
-                  />
+                {/* Card-specific bottom details */}
+                {isAfterSales ? (
+                  <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-stone-200/50 pt-3.5 sm:mt-6 sm:pt-4">
+                    {["30 Day", "60 Day", "90 Day"].map((milestone) => (
+                      <span
+                        key={milestone}
+                        className="inline-flex items-center gap-1 rounded-lg bg-sand/80 px-2.5 py-1 text-[11px] font-medium text-ink-soft"
+                      >
+                        <CheckCircle2 className="h-3 w-3 text-brand" />
+                        {milestone}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="relative mt-4 pt-2 sm:mt-6">
+                    <Image
+                      src="/images/000.png"
+                      alt=""
+                      aria-hidden
+                      width={120}
+                      height={120}
+                      className="pointer-events-none absolute -bottom-6 -right-4 h-20 w-20 object-contain opacity-20 transition-opacity duration-300 group-hover:opacity-30 sm:h-24 sm:w-24"
+                    />
+                  </div>
                 )}
               </div>
             );
