@@ -74,7 +74,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative w-full h-[85vh] min-h-[550px] lg:h-[85vh] lg:max-h-[850px] overflow-hidden"
+      className="relative w-full h-[420px] sm:h-[520px] lg:h-[85vh] lg:min-h-[620px] lg:max-h-[850px] overflow-hidden"
     >
       {/* Background Image Slideshow - Edge to Edge, No Rounded Corners */}
       <div className="absolute inset-0">
@@ -101,11 +101,11 @@ export default function Hero() {
       {/* Hero Content Container - Aligned to standard page shell measure & padding */}
       <div
         ref={copyRef}
-        className="shell relative flex h-full flex-col justify-end text-cream pb-5 sm:pb-8 lg:pb-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
+        className="shell relative flex h-full flex-col justify-end text-cream pb-4 sm:pb-8 lg:pb-10 gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
       >
         {/* Left Column: Heading */}
-        <div data-hero-copy className="lg:max-w-[55%] mb-2 sm:mb-0">
-          <h1 className="text-[1.5rem] font-bold leading-[1.15] text-white sm:text-3xl lg:text-[3rem] xl:text-[3.5rem]">
+        <div data-hero-copy className="lg:max-w-[55%]">
+          <h1 className="text-[1.35rem] font-bold leading-[1.18] text-white sm:text-3xl lg:text-[3rem] xl:text-[3.5rem]">
             Bringing <span className="text-[#e4c8aa]">Luxury Aesthetics</span>
             <br className="hidden sm:block" /> in Architectural and Interior Designs
           </h1>
@@ -114,16 +114,16 @@ export default function Hero() {
         {/* Right Column: Subheading and CTA Button */}
         <div
           data-hero-copy
-          className="flex flex-col items-start gap-2.5 sm:gap-3.5 lg:max-w-[380px] shrink-0 pb-1"
+          className="flex flex-col items-start gap-2 sm:gap-3.5 lg:max-w-[380px] shrink-0"
         >
-          <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-cream/90">
+          <p className="text-[13px] sm:text-sm lg:text-base leading-snug sm:leading-relaxed text-cream/90">
             Bellevue simplifies the construction and completion of luxurious residential and commercial projects in India.
           </p>
           <a
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-2.5 sm:py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-lg transition-[background-color,transform,box-shadow] duration-300 hover:bg-brand-dark hover:scale-[1.02] shrink-0"
+            className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2 sm:px-6 sm:py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-lg transition-[background-color,transform,box-shadow] duration-300 hover:bg-brand-dark hover:scale-[1.02] shrink-0"
           >
             Start Your Journey
           </a>
