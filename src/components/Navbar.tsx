@@ -11,7 +11,7 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 100);
+    setScrolled(latest > 50);
   });
 
   // Close the mobile panel once the viewport is wide enough to show the links.
@@ -24,34 +24,38 @@ export default function Navbar() {
   }, []);
 
   return (
-    // `h-0` keeps the bar out of the flow so it floats over the hero's top edge
-    // the way compatto's does, while `sticky` still pins it during scroll.
-    <header className="absolute top-0 left-0 right-0 z-50 h-0">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:top-6 sm:px-6 pointer-events-none">
       <motion.nav
         data-navbar
-        initial={{ y: -24, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`relative mx-auto mt-0 w-full rounded-none border-b border-black/10 transition-[background-color,box-shadow,backdrop-filter] duration-300 sm:mt-5 sm:w-[95%] sm:max-w-[1440px] sm:rounded-[40px] sm:border-b-0 ${
-          scrolled
-            ? "bg-white/85 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-xl"
-            : "bg-white shadow-[0_5px_15px_rgba(0,0,0,0.05)]"
+        className={`pointer-events-auto relative w-full border transition-[max-width,background-color,box-shadow,backdrop-filter] duration-300 ease-out ${
+          open
+            ? "rounded-2xl sm:rounded-3xl bg-white border-black/10 shadow-xl max-w-full sm:max-w-5xl"
+            : "rounded-full " + (scrolled
+                ? "max-w-4xl sm:max-w-5xl bg-white/95 border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-md"
+                : "max-w-[1440px] bg-white border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-sm")
         }`}
       >
-        <div className="flex items-center justify-between gap-4 px-5 py-3 sm:px-8 sm:py-4 lg:px-16">
+        <div className={`flex items-center justify-between transition-all duration-500 ${
+          scrolled ? "px-4 py-2 sm:px-7 sm:py-2.5" : "px-6 py-3 sm:px-10 sm:py-3.5"
+        }`}>
+          {/* Left: Company Logo */}
           <SiteLink
             href="/"
-            className="text-xl font-medium tracking-wide text-[#070707] sm:text-2xl"
+            className="flex items-center gap-2 text-lg font-bold tracking-tight text-slate-900 sm:text-xl"
           >
-            {site.name}
+            <span>{site.name}</span>
           </SiteLink>
 
+          {/* Middle: Navigation Links */}
           <ul className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <SiteLink
                   href={link.href}
-                  className="relative text-[17px] font-light text-ink-soft transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-brand after:transition-[width] after:duration-300 hover:text-brand hover:after:w-full lg:text-[19px]"
+                  className="text-sm font-medium text-slate-800 transition-colors duration-200 hover:text-brand"
                 >
                   {link.label}
                 </SiteLink>
@@ -59,12 +63,13 @@ export default function Navbar() {
             ))}
           </ul>
 
+          {/* Right: CTA Button & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <a
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex rounded-[10px] border border-brand bg-brand px-4 py-2.5 text-[13px] font-medium text-white transition-colors duration-300 hover:bg-white hover:text-brand sm:px-6 sm:py-3.5 sm:text-sm"
+              className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition-all duration-300 hover:bg-brand-dark hover:shadow-md sm:px-6 sm:py-2.5 sm:text-sm"
             >
               Contact us
             </a>
@@ -75,29 +80,30 @@ export default function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-black/15 bg-white p-2 text-ink shadow-xs transition-colors hover:bg-black/5 md:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-gray-50 text-slate-800 transition-colors hover:bg-gray-100 md:hidden"
             >
-              <span className="relative block h-4 w-5">
+              <span className="relative block h-3.5 w-4">
                 <motion.span
-                  animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 top-0 h-0.5 w-5 rounded bg-current"
+                  animate={open ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute left-0 top-0 h-0.5 w-4 rounded bg-current"
                 />
                 <motion.span
                   animate={open ? { opacity: 0 } : { opacity: 1 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-0 top-[7px] h-0.5 w-5 rounded bg-current"
+                  className="absolute left-0 top-[5px] h-0.5 w-4 rounded bg-current"
                 />
                 <motion.span
-                  animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 top-[14px] h-0.5 w-5 rounded bg-current"
+                  animate={open ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute left-0 top-[10px] h-0.5 w-4 rounded bg-current"
                 />
               </span>
             </button>
           </div>
         </div>
 
+        {/* Mobile Menu Dropdown Drawer */}
         <AnimatePresence initial={false}>
           {open && (
             <motion.div
@@ -106,16 +112,16 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden md:hidden"
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="border-t border-black/10 px-5 py-4 md:hidden"
             >
-              <ul className="flex flex-col gap-1 border-t border-black/5 px-5 py-4">
+              <ul className="flex flex-col gap-2">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <SiteLink
                       href={link.href}
                       onNavigate={() => setOpen(false)}
-                      className="block py-2 text-base text-ink-soft transition-colors hover:text-brand"
+                      className="block rounded-lg px-3 py-2 text-base font-medium text-slate-800 transition-colors hover:bg-slate-100 hover:text-brand"
                     >
                       {link.label}
                     </SiteLink>

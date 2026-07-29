@@ -24,14 +24,15 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const layers = gsap.utils.toArray<HTMLElement>("[data-hero-layer]");
 
-      // Opening copy reveal.
+      // Opening copy reveal — clearProps ensures elements remain 100% visible without CSS collision.
       gsap.from("[data-hero-copy] > *", {
-        y: 34,
+        y: 30,
         opacity: 0,
-        duration: 1.1,
+        duration: 1,
         ease: "expo.out",
         stagger: 0.12,
-        delay: 0.25,
+        delay: 0.2,
+        clearProps: "all",
       });
 
       if (prefersReducedMotion) return;
@@ -64,83 +65,68 @@ export default function Hero() {
           scrub: true,
         },
       });
-
-      // Copy lifts and fades as the hero leaves.
-      gsap.to(copyRef.current, {
-        y: -40,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "60% top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    // Deliberately wider than both the navbar and the content shell — the
-    // navbar pill floats over its top edge, as on compatto.
     <section
       ref={sectionRef}
       id="top"
-      className="mx-auto w-full sm:mt-14 sm:w-[95%] sm:max-w-[1840px]"
+      className="relative w-full h-[85vh] min-h-[550px] lg:h-[85vh] lg:max-h-[850px] overflow-hidden"
     >
-      {/* Heights mirror compatto: 450 / 500 / 800px. Full-bleed and square on
-          mobile, a deeply rounded card from `sm` up. */}
-      <div className="relative h-[450px] overflow-hidden sm:h-[500px] sm:rounded-hero lg:h-[800px]">
-        <div ref={stackRef} className="absolute inset-0 scale-110">
+      {/* Background Image Slideshow - Edge to Edge, No Rounded Corners */}
+      <div className="absolute inset-0">
+        <div ref={stackRef} className="absolute inset-0 scale-105">
           {heroSlides.map((src, i) => (
             <div key={src} data-hero-layer className="absolute inset-0">
               <Image
                 src={src}
-                alt=""
+                alt="BelleVue Architectural & Interior Design"
                 fill
                 preload={i === 0}
                 sizes="100vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Legibility scrim — deeper at the bottom where the copy sits. */}
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+      {/* Legibility overlays */}
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
+      {/* Hero Content Container - Aligned to standard page shell measure & padding */}
+      <div
+        ref={copyRef}
+        className="shell relative flex h-full flex-col justify-end text-cream pb-5 sm:pb-8 lg:pb-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
+      >
+        {/* Left Column: Heading */}
+        <div data-hero-copy className="lg:max-w-[55%] mb-2 sm:mb-0">
+          <h1 className="text-[1.5rem] font-bold leading-[1.15] text-white sm:text-3xl lg:text-[3rem] xl:text-[3.5rem]">
+            Bringing <span className="text-[#e4c8aa]">Luxury Aesthetics</span>
+            <br className="hidden sm:block" /> in Architectural and Interior Designs
+          </h1>
+        </div>
+
+        {/* Right Column: Subheading and CTA Button */}
         <div
-          ref={copyRef}
-          className="relative flex h-full w-full flex-col justify-end gap-6 p-6 text-cream sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16 lg:p-14"
+          data-hero-copy
+          className="flex flex-col items-start gap-2.5 sm:gap-3.5 lg:max-w-[380px] shrink-0 pb-1"
         >
-          <div data-hero-copy className="lg:max-w-[58%]">
-            <h1 className="text-[1.75rem] font-bold leading-[1.15] sm:text-4xl lg:text-[3.25rem] xl:text-[3.75rem]">
-              Bringing <span className="text-[#e4c8aa]">Luxury Aesthetics</span>
-              <br className="hidden sm:block" /> in Architectural and Interior
-              Designs
-            </h1>
-          </div>
-
-          <div
-            data-hero-copy
-            className="flex flex-col items-start gap-4 lg:max-w-[400px]"
+          <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-cream/90">
+            Bellevue simplifies the construction and completion of luxurious residential and commercial projects in India.
+          </p>
+          <a
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-2.5 sm:py-3 text-center text-xs sm:text-sm font-semibold text-white shadow-lg transition-[background-color,transform,box-shadow] duration-300 hover:bg-brand-dark hover:scale-[1.02] shrink-0"
           >
-            <p className="text-base leading-relaxed sm:text-[1.1rem]">
-              Bellevue simplifies the construction and completion of luxurious
-              residential and commercial projects in India.
-            </p>
-            <a
-              href={site.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full max-w-[250px] rounded-[10px] border border-cream bg-cream px-5 py-3 text-center font-semibold text-espresso transition-colors duration-300 hover:bg-transparent hover:text-cream"
-            >
-              Start Your Journey
-            </a>
-          </div>
+            Start Your Journey
+          </a>
         </div>
       </div>
     </section>
