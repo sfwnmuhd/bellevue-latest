@@ -53,7 +53,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative w-full min-h-[480px] h-[80vh] sm:h-[560px] lg:h-[85vh] lg:min-h-[640px] lg:max-h-[850px] overflow-hidden"
+      className="relative w-full h-[100dvh] min-h-[520px] md:h-screen overflow-hidden"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0">
