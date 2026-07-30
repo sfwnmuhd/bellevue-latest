@@ -46,33 +46,43 @@ export default function WhoWeArePage() {
       <section className="shell mb-16 lg:mb-24">
         <div className="overflow-hidden rounded-3xl bg-[#fdfbf7] border border-[#efebe2] p-6 shadow-sm sm:p-10 lg:p-12">
           <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-            {/* Left Portrait Image */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#efebe2] lg:col-span-5">
+            {/* Left Portrait Image with refined frame & soft aesthetic glassmorphic badge */}
+            <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#e8dfd3] bg-[#f4efe8] shadow-md shadow-[#222222]/5 lg:col-span-5">
               <Image
                 src="/images/founder.png"
-                alt="Panos - Founder of BelleVue"
+                alt="Ajaz Abdulsalam - Founder of BelleVue"
                 fill
                 sizes="(max-width: 1024px) 100vw, 500px"
-                className="object-cover object-top transition-transform duration-700 hover:scale-105"
+                className="object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 priority
               />
+              {/* Glassmorphic overlay badge on bottom left of portrait */}
+              <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/40 bg-white/75 p-3.5 backdrop-blur-md transition-all duration-300 group-hover:bg-white/85 shadow-sm">
+                <p className="text-xs font-semibold text-[#2b231d]">Ajaz Abdulsalam</p>
+                <p className="text-[11px] text-[#736557]">Founder & Managing Director</p>
+              </div>
             </div>
 
             {/* Right Biography & Quote */}
             <div className="flex flex-col justify-center lg:col-span-7">
+              <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-[#e8dfd3] bg-[#f4ece1]/80 px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#a6734c] uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#a6734c]" />
+                <span>The Visionary</span>
+              </div>
+
               <h2 className="mb-4 text-2xl font-light text-[#222222] sm:text-3xl lg:text-[2.25rem]">
                 Meet <span className="font-semibold text-[#a6734c]">our Founder</span>
               </h2>
 
               <div className="space-y-4 text-xs leading-relaxed text-[#5c5248] sm:text-sm lg:text-[15px]">
                 <p>
-                  Ajaaz, the visionary founder of BelleVue, has been immersed in the world
+                  Ajaz Abdulsalam, the visionary founder of BelleVue, has been immersed in the world
                   of architecture and interior design since childhood. Growing up around the
                   field, he gained invaluable hands-on experience and a deep understanding of the
                   industry&apos;s challenges and opportunities.
                 </p>
                 <p>
-                  Through his work, Ajaaz identified a significant gap in the market – a lack of transparency,
+                  Through his work, Ajaz identified a significant gap in the market – a lack of transparency,
                   organization, flexibility, and genuine commitment to customer satisfaction. Driven by a desire to
                   bridge this gap and redefine the industry&apos;s standards, he set out to create a company that
                   would prioritize functional designs, exceptional craftsmanship, and customer-centric solutions.
@@ -81,18 +91,20 @@ export default function WhoWeArePage() {
 
               {/* Quote Block */}
               <div className="mt-6 border-t border-[#e8e0d5] pt-6 sm:mt-8">
-                <div className="mb-2 text-4xl leading-none text-[#a6734c] font-serif">“</div>
-                <blockquote className="text-sm font-medium leading-relaxed text-[#2b231d] sm:text-base">
-                  BelleVue&apos;s story began with a bold vision – to redefine the furniture and architectural
-                  design industry through uncompromised craftsmanship.
-                </blockquote>
+                <div className="relative rounded-2xl border border-[#efe6db] bg-[#f7f3ec]/70 p-5 sm:p-6 shadow-sm">
+                  <div className="mb-2 text-3xl leading-none text-[#a6734c] font-serif sm:text-4xl">“</div>
+                  <blockquote className="text-sm font-medium leading-relaxed text-[#2b231d] sm:text-base">
+                    BelleVue&apos;s story began with a bold vision – to redefine the furniture and architectural
+                    design industry through uncompromised craftsmanship and unwavering client commitment.
+                  </blockquote>
 
-                {/* Author Pill */}
-                <div className="mt-5 inline-flex flex-wrap items-center gap-2 rounded-2xl bg-[#f4ece1] px-4 py-2 text-xs font-medium text-[#4a3a2c] sm:rounded-full">
-                  <span className="h-2 w-2 rounded-full bg-[#a6734c]" />
-                  <span>Ajaaz C A</span>
-                  <span className="opacity-40">•</span>
-                  <span className="text-[#6b5a4b] font-normal">Founder of BelleVue</span>
+                  {/* Author Pill */}
+                  <div className="mt-4 inline-flex flex-wrap items-center gap-2 text-xs font-medium text-[#4a3a2c]">
+                    <span className="h-2 w-2 rounded-full bg-[#a6734c]" />
+                    <span className="font-semibold text-[#2b231d]">Ajaz Abdulsalam</span>
+                    <span className="opacity-40">•</span>
+                    <span className="text-[#6b5a4b] font-normal">Founder of BelleVue</span>
+                  </div>
                 </div>
               </div>
             </div>
