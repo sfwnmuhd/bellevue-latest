@@ -1,7 +1,7 @@
 export const site = {
   name: "BelleVue",
   tagline: "ARCHITECTURE MADE SIMPLE",
-  whatsapp: "https://wa.me/7034994109",
+  whatsapp: "https://wa.me/7034994100",
   phone: "+91 7034994100",
   email: "contact@bellevuearchitects.com",
   location: "Banglore",

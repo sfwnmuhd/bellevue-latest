@@ -35,32 +35,32 @@ export default function WhoWeAre() {
             <div className="relative z-10 flex flex-col gap-6">
               <div className="inline-block">
                 <span className="px-3.5 py-1.5 rounded-full bg-white/10 text-cream/90 text-xs font-medium tracking-wide border border-white/10">
-                  EST. 2019 • INDIA
+                  EST. 2022 • INDIA
                 </span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-medium leading-snug text-white">
-                Bespoke Design, End-to-End Execution & Lifetime Quality
+                From Vision to Reality, Without Compromise.
               </h3>
 
               <p className="text-sm sm:text-base leading-relaxed text-cream/80 font-light">
-                As a premier architectural and interior design studio, our mission is to deliver turnkey solutions without restrictive vendor boundaries — ensuring every detail aligns with your unique lifestyle and standards.
+                We combine timeless aesthetics,meticulous planning, and flawless execution to create spaces that are as enduring as they are extraordinary
               </p>
             </div>
 
             {/* Key feature pills */}
             <div className="relative z-10 flex flex-wrap gap-x-5 gap-y-2.5 pt-6 mt-6 border-t border-white/10 text-xs font-medium text-cream/90">
               <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> Turnkey Execution
+                <span className="text-brand-light">✦</span> Turnkey solution
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-brand-light">✦</span> Zero Restraints
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> Bespoke Furnishing
+                <span className="text-brand-light">✦</span> Bespoke Designs
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> 90-Day Post Support
+                <span className="text-brand-light">✦</span> 1 year of free Service
               </div>
             </div>
           </div>
