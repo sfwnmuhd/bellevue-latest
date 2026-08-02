@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Counter from "./Counter";
 import { stats } from "@/lib/site";
+import { KeyRound, Sparkles, Palette, ShieldCheck } from "lucide-react";
 
 export default function WhoWeAre() {
   return (
@@ -44,23 +45,27 @@ export default function WhoWeAre() {
               </h3>
 
               <p className="text-sm sm:text-base leading-relaxed text-cream/80 font-light">
-                We combine timeless aesthetics,meticulous planning, and flawless execution to create spaces that are as enduring as they are extraordinary
+                We combine timeless aesthetics, meticulous planning, and flawless execution to create spaces that are as enduring as they are extraordinary
               </p>
             </div>
 
             {/* Key feature pills */}
-            <div className="relative z-10 flex flex-wrap gap-x-5 gap-y-2.5 pt-6 mt-6 border-t border-white/10 text-xs font-medium text-cream/90">
-              <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> Turnkey solution
+            <div className="relative z-10 flex flex-wrap gap-2.5 pt-6 mt-6 border-t border-white/10 text-xs font-medium text-cream/90">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-colors">
+                <KeyRound className="w-3.5 h-3.5 text-brand-light shrink-0" />
+                <span>Turnkey Solution</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> Zero Restraints
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-colors">
+                <Sparkles className="w-3.5 h-3.5 text-brand-light shrink-0" />
+                <span>Zero Restraints</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> Bespoke Designs
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-colors">
+                <Palette className="w-3.5 h-3.5 text-brand-light shrink-0" />
+                <span>Bespoke Designs</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-brand-light">✦</span> 1 year of free Service
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-colors">
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-light shrink-0" />
+                <span>1 Year of Free Service</span>
               </div>
             </div>
           </div>
