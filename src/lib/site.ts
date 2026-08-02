@@ -21,7 +21,7 @@ export const heroSlides = [
 
 export const stats = [
   { value: 50, label: "Projects Completed." },
-  { value: 5, label: "Years of Industry Experience." },
+  { value: 2, label: "Years of Industry Experience." },
 ] as const;
 
 export type ProcessStep = {
